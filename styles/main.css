@@ -87,3 +87,71 @@ input[type=search]:focus-visible {
 	background: url("../img/ic_menu_search_focus.png") no-repeat;
 	background-size: contain;
 }
+.videobit > * {
+	color: rgb(190, 190, 190);
+	text-decoration: none;
+}
+.videobit:hover {
+	background: #e98c00;
+}
+.videobitPic {
+	position: relative;
+	border-width: 1px;
+	border-image: url("../img/video_frame.9.png") 0 0 0 0 fill stretch stretch;
+}
+.videobitPic > img {
+	background: url("../img/ic_no_thumb.png") no-repeat;
+	padding: 1px;
+	border: none;
+	background-size: 50% 50%;
+	background-position-x: 50%;
+	background-position-y: 50%;
+}
+.videobitPic > div {
+	position:absolute;
+	bottom: 3px;
+	right: 3px;
+	background: black;
+	padding: 1px;
+	padding-right: 6px;
+	padding-left: 6px;
+}
+.videobitDesc {
+	vertical-align: text-top;
+}
+.videobitDesc > * {
+	vertical-align: text-top;
+	margin: 0px;
+}
+.tab {
+	display: flex;
+	overflow-x: scroll;
+	scrollbar-width: none;
+
+}
+.tab button {
+	height: 48px;
+	appearance: none;
+	background: rgb(0, 0, 0);
+	color: unset;
+	width:100%;
+	min-width: 100px;
+	padding: 0px;
+	margin: 0px;
+	border: none;
+	border-bottom: solid 1px;
+}
+.tab button:hover {
+	color: white;
+}
+.tab button.active {
+	color: white;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	background: linear-gradient(0deg, #000000, #474747, #626262);
+	border: solid 1px rgb(190 190 190);
+	border-bottom: none;
+}
+.tabcontent {
+	display: none;
+}
