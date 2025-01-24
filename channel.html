@@ -1,12 +1,82 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Channel</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <script src="scripts/main.js"></script>
   </head>
-  <body>
-    <header></header>
-    <main></main>
-    <footer></footer>
+  <body onload="channel()">
+    <div style="height:48px; margin-bottom: 32px">
+    <form action="search.html" method="GET">
+      <table class="header" style="padding: 4px; width: 100%">
+        <tr>
+          <td class="logo"><a href="settings.html" style="display:block; height:100%; width: 100%"></a></td>
+          <td style="width: 60vw">
+            <input type="search" name="searchField" required />
+          </td>
+          <td class="divider"></td>
+          <td style="width: 32px">
+            <input type="submit" value="" class="searchBtn">
+          </td>
+        </tr>
+      </table>
+    </form>
+    </div>
+    <table>
+      <tr>
+        <td class="channelPic"><img src="https://loremflickr.com/320/240" height="100" width="100" /></td>
+        <td class="profileInfo">
+          <h4>Username </h4>
+          <p>Channel views </p>
+          <p>Uploaded </p>
+          <p>Subscribers </p>
+        </td>
+      </tr>
+    </table>
+
+    <div class="tab">
+
+      <button class="tablinks active" onclick="openTab(event, 'uploads')">Uploads</button>
+      <button class="tablinks" onclick="openTab(event, 'playlists')">Playlists</button>
+      <button class="tablinks" onclick="openTab(event, 'about')">Personal Info</button>
+
+    </div>
+
+    <div id="about" class="tabcontent">
+      <p>just a shit</p>
+    </div>
+
+    <div id="playlists" class="tabcontent">
+      <ul id="playlistbits">
+        <li class="playlistbit"><a href="playlist.html?playlistId=">Test</a></li>
+        <li class="playlistbit"><a href="playlist.html?playlistId=">Test</a></li>
+        <li class="playlistbit"><a href="playlist.html?playlistId=">Test</a></li>
+      </ul>
+    </div>
+
+    <div id="uploads" class="tabcontent" style="display:block">
+      <div id="videobits">
+        <!--bit start-->
+        <div class="videobit">
+          <a href="video.html?id=">
+            <table>
+              <tr>
+                <td class="videobitPic"><img src="https://loremflickr.com/320/240" height="90" width="140"/> <div>00:00</div></td>
+                <td class="videobitDesc">
+                  <h4>Titel</h4>
+                  <p>channel</p>
+                  <p>date ago | views</p>
+                </td>
+              </tr>
+            </table>
+          </a>
+        </div>
+        <!--bit end-->
+      </div>
+    </div>
+
+    <p>QuQunta (c) 2025</p>
   </body>
 </html>
