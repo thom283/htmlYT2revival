@@ -43,12 +43,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 .header {
 	height: 48px;
-	border-style: solid;
-	border-width: 5px;
-	border-image: url("../img/header.9.png") 5 5 5 5 fill stretch stretch;
+	border: 2px solid #878787;
+	background: linear-gradient(0deg, #000000, #2b2b2b, #626262);
+	border-radius: 5px;
 }
 .logo {
-	width: 10vh;
+	width: 68px;
 	background-image: url("../img/btn_logo_normal.png");
 	background-size: contain;
 	background-repeat: no-repeat;
@@ -127,9 +127,9 @@ input[type=search]:focus-visible {
 	display: flex;
 	overflow-x: scroll;
 	scrollbar-width: none;
-
 }
 .tab button {
+	font-size: larger;
 	height: 48px;
 	appearance: none;
 	background: rgb(0, 0, 0);
@@ -154,4 +154,34 @@ input[type=search]:focus-visible {
 }
 .tabcontent {
 	display: none;
+}
+.channelPic > img {
+	margin: 3px;
+	border: 2px solid white;
+}
+.profileInfo {
+	vertical-align: text-top;
+	width: 100%;
+
+}
+.profileInfo > * {
+	margin: 0px;
+}
+.playlistbits{
+	vertical-align: middle;
+}
+.playlistbit {
+	list-style: none;
+	color: white;
+	font-size: larger;
+}
+.playlistbit > a {
+	display: block;
+	margin-left: 10px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font-size: larger;
+	color: white;
+	height: 3vh;
+	text-decoration: none;
 }
