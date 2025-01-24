@@ -12,10 +12,10 @@ function search() {
 	//alert(encquery);
 }
 function channel() {
-	let channelId = getParameterByName('channelId')
+	let channelId = getParameterByName('channelId');
 }
-function playlist(playlistid) {
-
+function playlist() {
+	let playlistId = getParameterByName('playlistId');
 }
 
 //stealed scripts
