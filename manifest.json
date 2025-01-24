@@ -2,7 +2,7 @@
  "name": "YouTube Web v2",
  "description": "YouTube UI revival",
   "short_name": "ququntaytv2",
-  "start_url": "/",
+  "start_url": "https://ququnta.github.io/htmlYT2revival/",
   "lang": "en",
   "display": "standalone",
  "icons": [
