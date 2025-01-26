@@ -1,4 +1,5 @@
 //settings
+
 let glype = localStorage.getItem('glype');
 let invidious = localStorage.getItem('invidious');
 if (!glype) {
