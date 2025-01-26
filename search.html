@@ -8,6 +8,7 @@
     <script src="scripts/main.js"></script>
   </head>
   <body onload="search()">
+  <div id="wrapper">
     <div style="height:48px; margin-bottom: 32px">
     <form action="search.html" method="GET">
       <table class="header" style="padding: 4px; width: 100%">
@@ -16,6 +17,8 @@
           <td style="width: 60vw">
             <input type="search" name="searchField" required />
           </td>
+          <td class="divider"></td>
+          <td class="label" style="width: 84px" onclick="showPopup()">Time filter</td>
           <td class="divider"></td>
           <td style="width: 32px">
             <input type="submit" value="" class="searchBtn">
@@ -46,5 +49,7 @@
 
     </div>
     <p>QuQunta (c) 2025</p>
+    </div>
+    <div id="popup"><span class="close" onclick="hidePopup()"><div></div></span></div>
   </body>
 </html>

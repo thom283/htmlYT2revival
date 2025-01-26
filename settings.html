@@ -5,12 +5,32 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>Settings</title>
     <link rel="stylesheet" href="styles/main.css">
+    <script src="scripts/main.js"></script>
+    <script>
+      var glype_inp = null;
+      var invidious_inp = null;
+      function init() {
+        glype_inp = document.getElementById('glype');
+        invidious_inp = document.getElementById('invidious');
+        glype_inp.value = glype;
+        invidious_inp.value = invidious;
+      }
+      function saveSetting(name) {
+        localStorage.setItem(name, document.getElementById(name).value);
+      }
+    </script>
   </head>
-  <body>
+  <body onload="init()">
     <h1><span><a href="index.html"><img src="img/ic_menu_home.png" /></a></span>Settings</h1>
       <div class="settingsBlockContainer">
-        <div class="settingsBlockHeader"><h4>GroupTitle</h4></div>
-        <div class="settingsBlockContent"><h3>ItemTitle</h3><p class="description">Nope :'(</p></div>
+        <div class="settingsBlockHeader"><h4>Instances</h4></div>
+
+        <div class="settingsBlockContent acc" onclick="acc(this)"><h3>Invidious Instance</h3><p class="description">Set Invidious instance where we will get metadata. Example: "<strong>https://inv.nadeko.net/</strong>"</p></div>
+        <div class="accD dn"><input type="text" id="invidious" onfocusout="saveSetting('invidious')"></div>
+
+        <div class="settingsBlockContent acc" onclick="acc(this)"><h3>Glype Proxy Instance</h3><p class="description">Proxy for disbaling CORS. Example: "<strong>https://nnp.nnchan.ru/glype/browse.php?u=</strong>"</p></div>
+        <div class="accD dn"><input type="text" id="glype" onfocusout="saveSetting('glype')"></div>
+
       </div>
     QuQunta (c) 2025
   </body>
