@@ -259,7 +259,7 @@ input[type=search]:focus-visible {
 .containerLike2 {
 	display: flex;
 }
-.like, .dislike {
+.like,  .dislike {
 	display: block;
 	height: 32px;
 	width:32px;
