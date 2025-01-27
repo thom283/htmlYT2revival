@@ -8,48 +8,57 @@
     <script src="scripts/main.js"></script>
   </head>
   <body onload="search()">
-  <div id="wrapper">
-    <div style="height:48px; margin-bottom: 32px">
     <form action="search.html" method="GET">
-      <table class="header" style="padding: 4px; width: 100%">
-        <tr>
-          <td class="logo"><a href="settings.html" style="display:block; height:100%; width: 100%"></a></td>
-          <td style="width: 60vw">
-            <input type="search" name="searchField" required />
-          </td>
-          <td class="divider"></td>
-          <td class="label" style="width: 84px" onclick="showPopup()">Time filter</td>
-          <td class="divider"></td>
-          <td style="width: 32px">
-            <input type="submit" value="" class="searchBtn">
-          </td>
-        </tr>
-      </table>
-    </form>
-    </div>
-    <h1> Results for: <span id="containerQuery"></span></h1>
-    <div id="videobits">
-
-<!--bit start-->
-      <div class="videobit">
-      <a href="video.html?id=">
-        <table>
-          <tr>
-            <td class="videobitPic"><img src="img/video_frame.9.png" height="90" width="140"/> <div>00:00</div></td>
-            <td class="videobitDesc">
-              <h4>Titel</h4>
-              <p>channel</p>
-              <p>date ago | views</p>
-            </td>
-          </tr>
-        </table>
-      </a>
+      <div id="popup"><span class="close" onclick="hidePopup()"><div></div></span>
+        <select name="sort">
+          <option value="alltime">All Time</option>
+          <option value="today">Today</option>
+          <option value="week">This Week</option>
+          <option value="month">This Month</option>
+        </select>
       </div>
-<!--bit end-->
+      <div id="wrapper">
+        <div style="height:48px; margin-bottom: 32px">
 
-    </div>
-    <p>QuQunta (c) 2025</p>
-    </div>
-    <div id="popup"><span class="close" onclick="hidePopup()"><div></div></span></div>
+          <table class="header" style="padding: 4px; width: 100%">
+            <tr>
+              <td class="logo"><a href="settings.html" style="display:block; height:100%; width: 100%"></a></td>
+              <td style="width: 60vw">
+                <input type="search" name="searchField" required />
+              </td>
+              <td class="divider"></td>
+              <td class="label" style="width: 84px" onclick="showPopup()">Time filter</td>
+              <td class="divider"></td>
+              <td style="width: 32px">
+                <input type="submit" value="" class="searchBtn">
+              </td>
+            </tr>
+          </table>
+
+        </div>
+        <h1> Results for: <span id="containerQuery"></span></h1>
+        <div id="videobits">
+
+    <!--bit start-->
+          <div class="videobit">
+          <a href="video.html?id=">
+            <table>
+              <tr>
+                <td class="videobitPic"><img src="img/video_frame.9.png" height="90" width="140"/> <div>00:00</div></td>
+                <td class="videobitDesc">
+                  <h4>Titel</h4>
+                  <p>channel</p>
+                  <p>date ago | views</p>
+                </td>
+              </tr>
+            </table>
+          </a>
+          </div>
+    <!--bit end-->
+
+        </div>
+        <p>QuQunta (c) 2025</p>
+      </div>
+    </form>
   </body>
 </html>

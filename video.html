@@ -1,12 +1,96 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
   <head>
+    <!--vjs-->
+    <link rel="stylesheet" href="vjs/vjs.css" type="text/css">
+    <script src="vjs/video.js"></script>
+    <link rel="stylesheet" href="vjs/tube.css">
+    <!--/vjs-->
     <meta charset="utf-8">
-    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Video</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <script src="scripts/main.js"></script>
+
   </head>
-  <body>
-    <header></header>
-    <main></main>
-    <footer></footer>
+  <body onload="video()">
+  <div id="wrapper">
+    <div style="height:48px; margin-bottom: 32px">
+
+      <table class="header" style="padding: 4px; width: 100%">
+        <tr>
+          <td class="logo" style="width: auto"><a href="settings.html" style="display:block; height:100%; width: 100%"></a></td>
+          <td style="width: 32px" class="btnToolbar">
+            <button></button>
+          </td>
+          <td class="divider"></td>
+          <td style="width: 32px" class="btnToolbar">
+            <button></button>
+          </td>
+          <td class="divider"></td>
+          <td style="width: 32px" class="btnToolbar">
+            <button></button>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div></div>
+    <div class="player">
+      <video id="home_video" class="video-js tubecss" data-setup="{}" controls height="360" width="640" poster="http://web.archive.org/web/20120502022135im_/http://video-js.zencoder.com/oceans-clip.jpg">
+        <source src="http://web.archive.org/web/20120502022135im_/http://video-js.zencoder.com/oceans-clip.mp4" type="video/mp4"/>
+      </video>
+    </div>
+    <div class="tab">
+
+      <button class="tablinks active" onclick="openTab(event, 'info')">Info</button>
+      <button class="tablinks" onclick="openTab(event, 'related')">Related</button>
+      <button class="tablinks" onclick="openTab(event, 'comments')">Comments</button>
+
+    </div>
+    <div id="info" class="tabcontent" style="display:block">
+      <h2>Title</h2>
+      <span>date</span>
+      <h5>views likes dislikes</h5>
+      <table><tr><td><strong><a class="button" href="channel.html?channelId=">channel</a></strong></td><td><span class="containerLike2"><a href="#like" class="like"></a><a href="#dislike" class="dislike"></a></span></td></tr></table>
+      <h5>Description</h5>
+      <div>-</div>
+      <h5>Category</h5>
+      <div>-</div>
+      <h5>Tags</h5>
+      <div>-</div>
+    </div>
+
+    <div id="comments" class="tabcontent">
+    <div class="comments">
+      <h4>name</h4>
+      <p>comment</p>
+      <p>date</p>
+    </div>
+    </div>
+
+    <div id="related" class="tabcontent" >
+      <div id="videobits">
+        <!--bit start-->
+        <div class="videobit">
+          <a href="video.html?id=">
+            <table>
+              <tr>
+                <td class="videobitPic"><img src="https://loremflickr.com/320/240" height="90" width="140"/> <div>00:00</div></td>
+                <td class="videobitDesc">
+                  <h4>Titel</h4>
+                  <p>channel</p>
+                  <p>date ago | views</p>
+                </td>
+              </tr>
+            </table>
+          </a>
+        </div>
+        <!--bit end-->
+      </div>
+    </div>
+
+    <p>QuQunta (c) 2025</p>
+    </div>
+    <div id="popup"></div>
   </body>
 </html>
