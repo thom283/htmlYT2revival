@@ -6,7 +6,7 @@ if (!glype) {
 	glype = localStorage.getItem('glype');
 }
 if (!apikey) {
-	localStorage.setItem('key', 'AIzaSyAFfAXy_qKdeCY7ypwDbLA63HbCuilVvHU');
+	localStorage.setItem('key', Base64.decode('QUl6YVN5QUZmQVh5X3FLZGVDWTd5cHdEYkxBNjNIYkN1aWxWdkhV'));
 	apikey = localStorage.getItem('key');
 }
 
