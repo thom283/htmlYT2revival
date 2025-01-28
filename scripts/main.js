@@ -1,25 +1,35 @@
 //settings
-
 let glype = localStorage.getItem('glype');
-let invidious = localStorage.getItem('invidious');
+let apikey = localStorage.getItem('key');
 if (!glype) {
-	localStorage.setItem('glype', 'https://nnp.nnchan.ru/glype/browse.php?u=');
+	localStorage.setItem('glype', 'https://api.cors.lol/?url=');
 	glype = localStorage.getItem('glype');
 }
-if (!invidious) {
-	localStorage.setItem('invidious', 'https://inv.nadeko.net/');
-	invidious = localStorage.getItem('invidious');
+if (!apikey) {
+	localStorage.setItem('key', 'AIzaSyAFfAXy_qKdeCY7ypwDbLA63HbCuilVvHU');
+	apikey = localStorage.getItem('key');
 }
 
 //per page fns
 function trends(region) {
 	//alert(region);
+	let xhr = new XMLHttpRequest();
+	xhr.open('GET', glype+encodeURIComponent('https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=15&regionCode='+region+'&key='+apikey), true);
+	xhr.send();
+	xhr.onload = function() {
+		var response = xhr.responseText;
+		let videolist = document.getElementById('videobits');
+		response.forEach(function(entry){
+			videolist+=entry.kind;
+		});
+	}
 }
 function video() {
 	let videoid = getParameterByName('id');
 }
 function search() {
 	let query = getParameterByName('searchField');
+	let sort = getParameterByName('sort');
 	let encquery = encodeURIComponent(query);
 	let containerQuery = document.getElementById('containerQuery');
 	containerQuery.innerHTML = query;
@@ -44,7 +54,7 @@ function hidePopup() {
 	popup.style.display = "none";
 }
 
-//stealed scripts
+//stolen scripts
 
 //urlparser
 function getParameterByName(name, url = window.location.href) {
