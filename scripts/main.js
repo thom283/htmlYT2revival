@@ -2,11 +2,11 @@
 let glype = localStorage.getItem('glype');
 let apikey = localStorage.getItem('key');
 if (!glype) {
-	localStorage.setItem('glype', 'https://api.cors.lol/?url=');
+	localStorage.setItem('glype', '');
 	glype = localStorage.getItem('glype');
 }
 if (!apikey) {
-	localStorage.setItem('key','AIzaSyAFfAXy_qKdeCY7ypwDbLA63HbCuilVvHU');
+	localStorage.setItem('key', 'AIzaSyAFfAXy_qKdeCY7ypwDbLA63HbCuilVvHU');
 	apikey = localStorage.getItem('key');
 }
 
@@ -14,13 +14,38 @@ if (!apikey) {
 function trends(region) {
 	//alert(region);
 	let xhr = new XMLHttpRequest();
-	xhr.open('GET', glype+encodeURIComponent('https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=15&regionCode='+region+'&key='+apikey), true);
+	xhr.responseType = 'json';
+	xhr.open('GET', 'https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=15&regionCode='+region+'&key='+apikey, true);
 	xhr.send();
 	xhr.onload = function() {
-		var response = xhr.responseText;
+		let response = xhr.response;
 		let videolist = document.getElementById('videobits');
-		response.forEach(function(entry){
-			videolist+=entry.kind;
+		response.items.forEach(function(item) {
+			let id = item.id;
+			let date = timeSince(item.snippet.publishedAt);
+			let title = item.snippet.title;
+			let thumb = item.snippet.thumbnails.default.url;
+			let channelTitle = item.snippet.channelTitle;
+			let duration = isoDurationToHHMMSS(item.contentDetails.duration);
+			let views = item.statistics.viewCount;
+			videolist.insertAdjacentHTML('beforeend', `
+			<!--bit start-->
+			<div class="videobit">
+			<a href="video.html?id=${id}">
+			<table>
+			<tr>
+			<td class="videobitPic"><img src="${thumb}" height="90" width="140"/> <div>${duration}</div></td>
+			<td class="videobitDesc">
+			<h4>${title}</h4>
+			<p>${channelTitle}</p>
+			<p>${date} | ${views} views</p>
+			</td>
+			</tr>
+			</table>
+			</a>
+			</div>
+			<!--bit end-->
+			`);
 		});
 	}
 }
@@ -101,3 +126,48 @@ window.acc=(e)=>{
 
 	})
 };
+
+//duration
+function isoDurationToHHMMSS(duration) {
+	// Parse the ISO 8601 duration
+	const regex = /P(?:T(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?)?/;
+	const matches = duration.match(regex);
+
+	if (!matches) {
+		throw new Error("Invalid ISO 8601 duration format");
+	}
+
+	// Extract hours, minutes, and seconds
+	let hours = parseInt(matches[1] || 0, 10);
+	let minutes = parseInt(matches[2] || 0, 10);
+	let seconds = parseInt(matches[3] || 0, 10);
+
+	// Format each component to be two digits
+	const pad = (num) => String(num).padStart(2, '0');
+
+	return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+}
+//relative time from timestamp
+function timeSince(date) {
+	const now = new Date();
+	const past = new Date(date);
+	const seconds = Math.floor((now - past) / 1000);
+
+	const intervals = [
+		{ label: 'year', seconds: 31536000 },
+		{ label: 'month', seconds: 2592000 },
+		{ label: 'day', seconds: 86400 },
+		{ label: 'hour', seconds: 3600 },
+		{ label: 'minute', seconds: 60 },
+		{ label: 'second', seconds: 1 }
+	];
+
+	for (const interval of intervals) {
+		const count = Math.floor(seconds / interval.seconds);
+		if (count > 0) {
+			return `${count} ${interval.label}${count !== 1 ? 's' : ''} ago`;
+		}
+	}
+
+	return 'just now';
+}
