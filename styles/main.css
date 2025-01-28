@@ -251,18 +251,23 @@ input[type=search]:focus-visible {
 	box-shadow: inset 0px 0px 8px 2px #ff0000, 0px 0px 8px 2px #ff0000;
 	border: 1px solid white;
 }
-.btnToolbar > button {
+.btnToolbar {
 	border: 0px;
 	height: 32px;
 	width: 32px;
+	background: none;
+	background-repeat: no-repeat;
+	background-size: contain;
+
 }
 .containerLike2 {
 	display: flex;
+	border-left: 1px solid white;
 }
-.like,  .dislike {
+.like, .dislike {
 	display: block;
 	height: 32px;
-	width:32px;
+	width: 32px;
 	background-repeat: no-repeat;
 	background-size: contain;
 }
@@ -277,4 +282,28 @@ input[type=search]:focus-visible {
 }
 .dislike:hover {
 	background-image: url('../img/ic_dislike_focus.png');
+}
+.favBtn {
+	background-image: url('../img/ic_add_to.png')
+}
+.shareBtn {
+	background-image: url('../img/ic_share.png')
+}
+.linkBtn {
+	background-image: url('../img/ic_copy_link.png')
+}
+.downloadBtn {
+	background-image: url('../img/ic_more.png')
+}
+.favBtn:active {
+	background-image: url('../img/ic_add_to_focus.png')
+}
+.shareBtn:active {
+	background-image: url('../img/ic_share_focus.png')
+}
+.linkBtn:active {
+	background-image: url('../img/ic_copy_link_focus.png')
+}
+.downloadBtn:active {
+	background-image: url('../img/ic_more_focus.png')
 }
