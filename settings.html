@@ -11,9 +11,9 @@
       var invidious_inp = null;
       function init() {
         glype_inp = document.getElementById('glype');
-        invidious_inp = document.getElementById('invidious');
+        apikey_inp = document.getElementById('key');
         glype_inp.value = glype;
-        invidious_inp.value = invidious;
+        apikey_inp.value = apikey;
       }
       function saveSetting(name) {
         localStorage.setItem(name, document.getElementById(name).value);
@@ -25,10 +25,10 @@
       <div class="settingsBlockContainer">
         <div class="settingsBlockHeader"><h4>Instances</h4></div>
 
-        <div class="settingsBlockContent acc" onclick="acc(this)"><h3>Invidious Instance</h3><p class="description">Set Invidious instance where we will get metadata. Example: "<strong>https://inv.nadeko.net/</strong>"</p></div>
-        <div class="accD dn"><input type="text" id="invidious" onfocusout="saveSetting('invidious')"></div>
+        <div class="settingsBlockContent acc" onclick="acc(this)"><h3>Google API key</h3><p class="description">Set Google API key, with which we will get metadata.</p></div>
+        <div class="accD dn"><input type="text" id="key" onfocusout="saveSetting('key')"></div>
 
-        <div class="settingsBlockContent acc" onclick="acc(this)"><h3>Glype Proxy Instance</h3><p class="description">Proxy for disbaling CORS. Example: "<strong>https://nnp.nnchan.ru/glype/browse.php?u=</strong>"</p></div>
+        <div class="settingsBlockContent acc" onclick="acc(this)"><h3>CORS Proxy</h3><p class="description">Proxy for disbaling CORS. Example: "<strong>https://api.cors.lol/?url=</strong>"</p></div>
         <div class="accD dn"><input type="text" id="glype" onfocusout="saveSetting('glype')"></div>
 
       </div>
