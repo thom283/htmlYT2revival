@@ -7,6 +7,7 @@ YT frontend with GUI from Android YouTube Client v2.4.4
 - [x] Write search functional
 - [ ] Write video page - partial (there is no add bookmark)
 - [x] Write channel page
+- [x] Write the playlist viewer
 - [ ] write a bookmark manager
 - [ ] (?) add polyfills for old browser
 - [ ] localizations (Ru, Kz, Fr, It, De ...)
