@@ -75,7 +75,7 @@ function video() {
 
 let pageToken = '';
 let page = 0;
-
+let channnelSearchId = getParameterByName('chid');
 function search() {
 	let videolist = document.getElementById('videobits');
 	page+=1;
@@ -84,7 +84,7 @@ function search() {
 	let encquery = encodeURIComponent(query);
 	let containerQuery = document.getElementById('containerQuery');
 	containerQuery.innerHTML = query;
-	//film music https://ok.ru/video/1367341533919?fromTime=3408
+	//кино на время говнокодинга https://ok.ru/video/1367341533919?fromTime=3408
 	let url = 'https://www.googleapis.com/youtube/v3/search?part=id,snippet&maxResults=25&type=video&q='+encquery+'&order='+sort+'&key='+apikey;
 	if (!!pageToken) {
 		url+='&pageToken='+pageToken;
@@ -313,7 +313,7 @@ function timeSince(date) {
 }
 function shareVideo() {
 	let videoid = getParameterByName('id');
-	let data = {title: 'YT Link', url: 'https://www.yaoutube.com/watch?v='+videoid};
+	let data = {title: 'YT Link', url: 'https://www.youtube.com/watch?v='+videoid};
 	navigator.share(data);
 }
 function copyUrl(){

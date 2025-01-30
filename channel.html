@@ -18,7 +18,7 @@
           <td class="divider"></td>
           <td class="label" style="width: 84px">
             <script>document.write(`
-            <a href="https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}" style="text-decoration: none; color: white;">Subscribe</a>
+            <a href="https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}" target="_blank" style="text-decoration: none; color: white;">Subscribe</a>
             `)</script>
           </td>
         </tr>
@@ -56,23 +56,11 @@
         </ul>
       </div>
       <div id="uploads" class="tabcontent" style="display:block">
-        <div id="videobits">
-          <!--bit start-->
-          <div class="videobit">
-            <a href="video.html?id=">
-              <table>
-                <tr>
-                  <td class="videobitPic"><img src="https://loremflickr.com/320/240" height="90" width="140"/> <div>00:00</div></td>
-                  <td class="videobitDesc">
-                    <h4>Titel</h4>
-                    <p>channel</p>
-                    <p>date ago | views</p>
-                  </td>
-                </tr>
-              </table>
-            </a>
-          </div>
-          <!--bit end-->
+        <div>
+          Use search for this.<br />
+          <script>document.write(`
+            <a href="search.html?query=$nbsp;&sort=relevance&chid=${channelId}" target="_blank" style="text-decoration: none; color: white;">Subscribe</a>
+            `)</script>
         </div>
       </div>
     </div>
