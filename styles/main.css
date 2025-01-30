@@ -74,7 +74,7 @@ input[type=search]:focus-visible {
 }
 .divider {
 	height: 100%;
-	background: url("../img/widget_divider.9.png") repeat-y;
+	background: url("../img/header_divider.png") repeat-y;
 	width: 3px;
 }
 .searchBtn {
@@ -227,6 +227,8 @@ input[type=search]:focus-visible {
 .comments {
 	border-bottom: solid 1px #3b3b3b;
 	border-top: solid 1px #3b3b3b;
+	top: 5px;
+	position: relative;
 }
 .comments > * {
 	margin: 0px;
