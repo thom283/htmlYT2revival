@@ -10,5 +10,5 @@ YT frontend with GUI from Android YouTube Client v2.4.4
 - [x] Write the playlist viewer
 - [ ] write a bookmark manager
 - [ ] (?) add polyfills for old browser
-- [ ] localizations (Ru, Kz, Fr, It, De ...)
+- [x] localizations (Ru, Kz, Fr, It, De ...) through google translator
 - [ ] make a fork with yt3.x gui 
