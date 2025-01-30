@@ -75,7 +75,7 @@ function video() {
 
 let pageToken = '';
 let page = 0;
-let channnelSearchId = getParameterByName('chid');
+
 function search() {
 	let videolist = document.getElementById('videobits');
 	page+=1;
@@ -86,6 +86,51 @@ function search() {
 	containerQuery.innerHTML = query;
 	//кино на время говнокодинга https://ok.ru/video/1367341533919?fromTime=3408
 	let url = 'https://www.googleapis.com/youtube/v3/search?part=id,snippet&maxResults=25&type=video&q='+encquery+'&order='+sort+'&key='+apikey;
+	if (!!pageToken) {
+		url+='&pageToken='+pageToken;
+	}
+	videolist.insertAdjacentHTML('beforeend', `
+	<p>Page: ${page}</p>
+	`);
+	let xhr = new XMLHttpRequest();
+	xhr.responseType = 'json';
+	xhr.open('GET', url, true);
+	xhr.send();
+	xhr.onload = function() {
+		let response = xhr.response;
+		
+		response.items.forEach(function(item) {
+			let id = item.id.videoId;
+			let date = timeSince(item.snippet.publishedAt);
+			let title = item.snippet.title;
+			let thumb = item.snippet.thumbnails.default.url;
+			let channelTitle = item.snippet.channelTitle;
+			videolist.insertAdjacentHTML('beforeend', `
+			<!--bit start-->
+			<div class="videobit">
+			<a href="video.html?id=${id}">
+			<table>
+			<tr>
+			<td class="videobitPic"><img src="${thumb}" height="90" width="140"/></td>
+			<td class="videobitDesc">
+			<h4>${title}</h4>
+			<p>${channelTitle}</p>
+			<p>${date}</p>
+			</td>
+			</tr>
+			</table>
+			</a>
+			</div>
+			<!--bit end-->
+			`);
+		});
+		pageToken = response.nextPageToken;
+	}
+}
+function channel_search(channnelSearchId) {
+	let videolist = document.getElementById('videobits');
+	page+=1;	
+	let url = 'https://www.googleapis.com/youtube/v3/search?part=snippet,id&order=date&maxResults=20&channelId='+channnelSearchId+'&key='+apikey;
 	if (!!pageToken) {
 		url+='&pageToken='+pageToken;
 	}

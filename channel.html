@@ -56,11 +56,11 @@
         </ul>
       </div>
       <div id="uploads" class="tabcontent" style="display:block">
-        <div>
-          Use search for this.<br />
-          <script>document.write(`
-            <a href="search.html?query=$nbsp;&sort=relevance&chid=${channelId}" target="_blank" style="text-decoration: none; color: white;">Subscribe</a>
-            `)</script>
+        <div id="videobits">
+          <script>
+          document.write(`
+          <p class="button" onclick="channel_search('${channelId}')">Load more</p>
+          `);</script>
         </div>
       </div>
     </div>
