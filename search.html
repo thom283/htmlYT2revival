@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>Search</title>
     <link rel="stylesheet" href="styles/main.css">
-    <script src="scripts/main.js"></script>
+
   </head>
   <body onload="search()">
     <form action="search.html" method="GET">
       <div id="popup"><span class="close" onclick="hidePopup()"><div></div></span>
         <select name="sort">
-          <option value="alltime">All Time</option>
-          <option value="today">Today</option>
-          <option value="week">This Week</option>
-          <option value="month">This Month</option>
+          <option value="date">Date</option>
+          <option value="rating">Rating</option>
+          <option value="relevance">Relevance</option>
+          <option value="title">Title</option>
         </select>
       </div>
       <div id="wrapper">
@@ -27,7 +27,7 @@
                 <input type="search" name="searchField" required />
               </td>
               <td class="divider"></td>
-              <td class="label" style="width: 84px" onclick="showPopup()">Time filter</td>
+              <td class="label" style="width: 84px" onclick="showPopup()">Order</td>
               <td class="divider"></td>
               <td style="width: 32px">
                 <input type="submit" value="" class="searchBtn">
@@ -37,28 +37,12 @@
 
         </div>
         <h1> Results for: <span id="containerQuery"></span></h1>
+        <p class="button" onclick="search()">Load more</p>
         <div id="videobits">
-
-    <!--bit start-->
-          <div class="videobit">
-          <a href="video.html?id=">
-            <table>
-              <tr>
-                <td class="videobitPic"><img src="img/video_frame.9.png" height="90" width="140"/> <div>00:00</div></td>
-                <td class="videobitDesc">
-                  <h4>Titel</h4>
-                  <p>channel</p>
-                  <p>date ago | views</p>
-                </td>
-              </tr>
-            </table>
-          </a>
-          </div>
-    <!--bit end-->
-
         </div>
         <p>QuQunta (c) 2025</p>
       </div>
     </form>
+    <script src="scripts/main.js"></script>
   </body>
 </html>

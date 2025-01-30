@@ -2,9 +2,9 @@
 <html lang="en">
   <head>
     <!--vjs-->
-    <link rel="stylesheet" href="vjs/vjs.css" type="text/css">
-    <script src="vjs/video.js"></script>
-    <link rel="stylesheet" href="vjs/tube.css">
+    <link rel="stylesheet" href="vjs4/video-js.css" type="text/css">
+    <link rel="stylesheet" href="vjs/tube.css" type="text/css">
+    
     <!--/vjs-->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -25,11 +25,11 @@
           </td>
           <td class="divider"></td>
           <td style="width: 32px">
-            <button class="shareBtn btnToolbar"></button>
+            <button class="shareBtn btnToolbar" onclick="shareVideo()"></button>
           </td>
           <td class="divider"></td>
           <td style="width: 32px">
-            <button class="linkBtn btnToolbar"></button>
+            <button class="linkBtn btnToolbar" onclick="copyUrl()"></button>
           </td>
           <td class="divider"></td>
           <td style="width: 32px">
@@ -40,61 +40,48 @@
     </div>
     <div></div>
     <div class="player">
-      <video id="home_video" class="video-js tubecss" data-setup="{}" controls height="360" width="640" poster="http://web.archive.org/web/20120502022135im_/https://video-js.zencoder.com/oceans-clip.jpg">
-        <source src="https://web.archive.org/web/20120502022135im_/http://video-js.zencoder.com/oceans-clip.mp4" type="video/mp4"/>
-      </video>
+      <script>
+        //urlparser
+        function getParameterByName(name, url = window.location.href) {
+          name = name.replace(/[\[\]]/g, '\\$&');
+          var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+          results = regex.exec(url);
+          if (!results) return null;
+          if (!results[2]) return '';
+          return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+        let vidid = getParameterByName('id');
+        document.write(`<video
+          id="vid1"
+          class="video-js vjs-default-skin"
+          controls
+          autoplay
+          width="640" height="264"
+          data-setup='{ "techOrder": ["youtube"], "sources": [{ "type": "video/youtube", "src": "https://www.youtube.com/watch?v=${vidid}"}] }'
+        ></video>`);
+      </script>
+
     </div>
     <div class="tab">
 
       <button class="tablinks active" onclick="openTab(event, 'info')">Info</button>
-      <button class="tablinks" onclick="openTab(event, 'related')">Related</button>
       <button class="tablinks" onclick="openTab(event, 'comments')">Comments</button>
 
     </div>
     <div id="info" class="tabcontent" style="display:block">
-      <h2>Title</h2>
-      <span>date</span>
-      <h5>views likes dislikes</h5>
-      <table><tr><td style="width:100%"><strong><a class="button" href="channel.html?channelId=">channel</a></strong></td><td><span class="containerLike2"><a href="#like" class="like"></a><a href="#dislike" class="dislike"></a></span></td></tr></table>
+      <h2 id="vidTitle">Title</h2>
+      <span id="vidDate">date</span>
+      <h5 id="viewsLikes">views likes</h5>
+      <table><tr><td style="width:100%"><strong id="vidChannel"><a class="button" href="channel.html?channelId=">channel</a></strong></td><td><span class="containerLike2"><a href="#like" class="like"></a><a href="#dislike" class="dislike"></a></span></td></tr></table>
       <h5>Description</h5>
-      <div>-</div>
-      <h5>Category</h5>
-      <div>-</div>
-      <h5>Tags</h5>
-      <div>-</div>
+      <div id="vidDescription">-</div>
     </div>
 
-    <div id="comments" class="tabcontent">
-    <div class="comments">
-      <h4>name</h4>
-      <p>comment</p>
-      <p>date</p>
-    </div>
-    </div>
+    <div id="comments" class="tabcontent"></div>
 
-    <div id="related" class="tabcontent" >
-      <div id="videobits">
-        <!--bit start-->
-        <div class="videobit">
-          <a href="video.html?id=">
-            <table>
-              <tr>
-                <td class="videobitPic"><img src="https://loremflickr.com/320/240" height="90" width="140"/> <div>00:00</div></td>
-                <td class="videobitDesc">
-                  <h4>Titel</h4>
-                  <p>channel</p>
-                  <p>date ago | views</p>
-                </td>
-              </tr>
-            </table>
-          </a>
-        </div>
-        <!--bit end-->
-      </div>
-    </div>
-
-    <p>QuQunta (c) 2025</p>
     </div>
     <div id="popup"></div>
+    <script src="vjs4/video.js"></script>
+    <script src="vjs4/yt.js"></script>
   </body>
 </html>
