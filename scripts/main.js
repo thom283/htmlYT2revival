@@ -98,7 +98,7 @@ function search() {
 	xhr.send();
 	xhr.onload = function() {
 		let response = xhr.response;
-		pageToken = response.nextPageToken;
+		
 		response.items.forEach(function(item) {
 			let id = item.id.videoId;
 			let date = timeSince(item.snippet.publishedAt);
@@ -124,6 +124,7 @@ function search() {
 			<!--bit end-->
 			`);
 		});
+		pageToken = response.nextPageToken;
 	}
 }
 function comments(vid){
@@ -173,6 +174,33 @@ function channel() {
 		chanDescription.innerHTML = response.items[0].snippet.description;
 		chanRegion.innerHTML = response.items[0].snippet.country;
 		chanPic.innerHTML = `<img src="${response.items[0].snippet.thumbnails.default.url}" height="100" width="100" />`;
+		chanPlaylist();
+		
+	}
+}
+let playlist_token = '';
+function chanPlaylist() {
+	let channelId = getParameterByName('channelId');
+	let url = 'https://www.googleapis.com/youtube/v3/playlists?part=snippet,contentDetails,id&channelId='+channelId+'&maxResults=50&key='+apikey;
+	if (!!playlist_token){
+		url+='&pageToken='+playlist_token;
+	}
+	let xhr = new XMLHttpRequest();
+	xhr.responseType = 'json';
+	xhr.open('GET', url, true);
+	xhr.send();
+	xhr.onload = function() {
+		let response = xhr.response;
+		response.items.forEach(function(item) {
+			let playlist_container = document.getElementById('playlistbits');
+			let id = item.id;
+			let title = item.snippet.title;
+			playlist_container.insertAdjacentHTML('beforeend', `
+			<li class="playlistbit"><a href="playlist.html?playlistId=${id}">${title}</a></li>
+			`);
+			
+		});
+		playlist_token = response.nextPageToken;
 	}
 }
 function playlist() {

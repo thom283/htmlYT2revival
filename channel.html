@@ -6,6 +6,7 @@
     <title>Channel</title>
     <link rel="stylesheet" href="styles/main.css">
     <script src="scripts/main.js"></script>
+    <script>let channelId = getParameterByName('channelId');</script>
   </head>
   <body onload="channel()">
   <div id="wrapper">
@@ -15,7 +16,11 @@
         <tr>
           <td class="logo" style="width: auto"><a href="settings.html" style="display:block; height:100%; width: 100%"></a></td>
           <td class="divider"></td>
-          <td class="label" style="width: 84px">Subscribe</td>
+          <td class="label" style="width: 84px">
+            <script>document.write(`
+            <a href="https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}" style="text-decoration: none; color: white;">Subscribe</a>
+            `)</script>
+          </td>
         </tr>
       </table>
 
@@ -46,10 +51,8 @@
         <p id="chanRegion"></p>
       </div>
       <div class="tabcontent" id="playlists">
+        <p class="button" onclick="chanPlaylist()">Load more</p>
         <ul id="playlistbits">
-          <li class="playlistbit"><a href="playlist.html?playlistId=">Test</a></li>
-          <li class="playlistbit"><a href="playlist.html?playlistId=">Test</a></li>
-          <li class="playlistbit"><a href="playlist.html?playlistId=">Test</a></li>
         </ul>
       </div>
       <div id="uploads" class="tabcontent" style="display:block">
