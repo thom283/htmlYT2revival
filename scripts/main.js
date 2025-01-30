@@ -248,8 +248,66 @@ function chanPlaylist() {
 		playlist_token = response.nextPageToken;
 	}
 }
+playlist_list_token = '';
 function playlist() {
 	let playlistId = getParameterByName('playlistId');
+
+
+	//playlist metadata
+	let xhr_meta = new XMLHttpRequest();
+	xhr_meta.responseType = 'json';
+	xhr_meta.open('GET', 'https://www.googleapis.com/youtube/v3/playlists?part=snippet&id='+playlistId+'&key='+apikey, true);
+	xhr_meta.send();
+	xhr_meta.onload = function() {
+		let response = xhr_meta.response;
+		document.getElementById('playlist_title').innerHTML = response.items[0].snippet.title;
+		document.getElementById('playlist_description').innerHTML = response.items[0].snippet.description;
+		document.getElementById('playlist_author').innerHTML = 'by '+response.items[0].snippet.channelTitle;
+	} 
+	//view items of playlist
+	let url = 'https://www.googleapis.com/youtube/v3/playlistItems?part=id%2Csnippet%2CcontentDetails&playlistId='+playlistId+'&key='+apikey;
+	if (!!playlist_list_token){
+		url+='&pageToken='+playlist_list_token;
+	}
+	let videolist = document.getElementById('videobits');
+	page+=1;	
+	videolist.insertAdjacentHTML('beforeend', `
+		<p>Page: ${page}</p>
+		`);
+	let xhr = new XMLHttpRequest();
+	xhr.responseType = 'json';
+	xhr.open('GET', url, true);
+	xhr.send();
+	xhr.onload = function() {
+		let response = xhr.response;
+		response.items.forEach(function(item) {
+			let id = item.snippet.resourceId.videoId;
+			let date = timeSince(item.snippet.publishedAt);
+			let title = item.snippet.title;
+			let thumb = item.snippet.thumbnails.default.url;
+			let channelTitle = item.snippet.channelTitle;
+		
+			videolist.insertAdjacentHTML('beforeend', `
+			<!--bit start-->
+			<div class="videobit">
+			<a href="video.html?id=${id}">
+			<table>
+			<tr>
+			<td class="videobitPic"><img src="${thumb}" height="90" width="140"/></td>
+			<td class="videobitDesc">
+			<h4>${title}</h4>
+			<p>${channelTitle}</p>
+			<p>${date}</p>
+			</td>
+			</tr>
+			</table>
+			</a>
+			</div>
+			<!--bit end-->
+			`);
+		});
+		playlist_list_token = response.nextPageToken;
+	}
 }
 function showPopup() {
 	let popup = document.getElementById('popup');
