@@ -9,6 +9,11 @@ if (!apikey) {
 	localStorage.setItem('key', 'AIzaSyAFfAXy_qKdeCY7ypwDbLA63HbCuilVvHU');
 	apikey = localStorage.getItem('key');
 }
+//definitions
+let pageToken = '';
+let page = 0;
+let playlist_token = '';
+let playlist_list_token = '';
 
 //per page functions
 function trends(region) {
@@ -29,20 +34,20 @@ function trends(region) {
 			let views = item.statistics.viewCount;
 			videolist.insertAdjacentHTML('beforeend', `
 			<!--bit start-->
-			<div class="videobit">
-			<a href="video.html?id=${id}">
-			<table>
-			<tr>
-			<td class="videobitPic"><img src="${thumb}" height="90" width="140"/> <div>${duration}</div></td>
-			<td class="videobitDesc">
-			<h4>${title}</h4>
-			<p>${channelTitle}</p>
-			<p>${date} | ${views} views</p>
-			</td>
-			</tr>
-			</table>
-			</a>
-			</div>
+				<div class="videobit">
+					<a href="video.html?id=${id}">
+						<table>
+							<tr>
+								<td class="videobitPic"><img src="${thumb}" height="90" width="140"/> <div>${duration}</div></td>
+								<td class="videobitDesc">
+									<h4>${title}</h4>
+									<p>${channelTitle}</p>
+									<p>${date} | ${views} views</p>
+								</td>
+							</tr>
+						</table>
+					</a>
+				</div>
 			<!--bit end-->
 			`);
 		});
@@ -73,8 +78,7 @@ function video() {
 	}
 }
 
-let pageToken = '';
-let page = 0;
+
 
 function search() {
 	let videolist = document.getElementById('videobits');
@@ -107,20 +111,20 @@ function search() {
 			let channelTitle = item.snippet.channelTitle;
 			videolist.insertAdjacentHTML('beforeend', `
 			<!--bit start-->
-			<div class="videobit">
-			<a href="video.html?id=${id}">
-			<table>
-			<tr>
-			<td class="videobitPic"><img src="${thumb}" height="90" width="140"/></td>
-			<td class="videobitDesc">
-			<h4>${title}</h4>
-			<p>${channelTitle}</p>
-			<p>${date}</p>
-			</td>
-			</tr>
-			</table>
-			</a>
-			</div>
+				<div class="videobit">
+					<a href="video.html?id=${id}">
+						<table>
+							<tr>
+								<td class="videobitPic"><img src="${thumb}" height="90" width="140"/></td>
+								<td class="videobitDesc">
+									<h4>${title}</h4>
+									<p>${channelTitle}</p>
+									<p>${date}</p>
+								</td>
+							</tr>
+						</table>
+					</a>
+				</div>
 			<!--bit end-->
 			`);
 		});
@@ -143,7 +147,6 @@ function channel_search(channnelSearchId) {
 	xhr.send();
 	xhr.onload = function() {
 		let response = xhr.response;
-		
 		response.items.forEach(function(item) {
 			let id = item.id.videoId;
 			let date = timeSince(item.snippet.publishedAt);
@@ -152,20 +155,20 @@ function channel_search(channnelSearchId) {
 			let channelTitle = item.snippet.channelTitle;
 			videolist.insertAdjacentHTML('beforeend', `
 			<!--bit start-->
-			<div class="videobit">
-			<a href="video.html?id=${id}">
-			<table>
-			<tr>
-			<td class="videobitPic"><img src="${thumb}" height="90" width="140"/></td>
-			<td class="videobitDesc">
-			<h4>${title}</h4>
-			<p>${channelTitle}</p>
-			<p>${date}</p>
-			</td>
-			</tr>
-			</table>
-			</a>
-			</div>
+				<div class="videobit">
+					<a href="video.html?id=${id}">
+						<table>
+							<tr>
+								<td class="videobitPic"><img src="${thumb}" height="90" width="140"/></td>
+								<td class="videobitDesc">
+									<h4>${title}</h4>
+									<p>${channelTitle}</p>
+									<p>${date}</p>
+								</td>
+							</tr>
+						</table>
+					</a>
+				</div>
 			<!--bit end-->
 			`);
 		});
@@ -223,7 +226,7 @@ function channel() {
 		
 	}
 }
-let playlist_token = '';
+
 function chanPlaylist() {
 	let channelId = getParameterByName('channelId');
 	let url = 'https://www.googleapis.com/youtube/v3/playlists?part=snippet,contentDetails,id&channelId='+channelId+'&maxResults=50&key='+apikey;
@@ -248,11 +251,9 @@ function chanPlaylist() {
 		playlist_token = response.nextPageToken;
 	}
 }
-playlist_list_token = '';
+
 function playlist() {
 	let playlistId = getParameterByName('playlistId');
-
-
 	//playlist metadata
 	let xhr_meta = new XMLHttpRequest();
 	xhr_meta.responseType = 'json';
@@ -286,23 +287,22 @@ function playlist() {
 			let title = item.snippet.title;
 			let thumb = item.snippet.thumbnails.default.url;
 			let channelTitle = item.snippet.channelTitle;
-		
 			videolist.insertAdjacentHTML('beforeend', `
 			<!--bit start-->
-			<div class="videobit">
-			<a href="video.html?id=${id}">
-			<table>
-			<tr>
-			<td class="videobitPic"><img src="${thumb}" height="90" width="140"/></td>
-			<td class="videobitDesc">
-			<h4>${title}</h4>
-			<p>${channelTitle}</p>
-			<p>${date}</p>
-			</td>
-			</tr>
-			</table>
-			</a>
-			</div>
+				<div class="videobit">
+					<a href="video.html?id=${id}">
+						<table>
+							<tr>
+								<td class="videobitPic"><img src="${thumb}" height="90" width="140"/></td>
+								<td class="videobitDesc">
+									<h4>${title}</h4>
+									<p>${channelTitle}</p>
+									<p>${date}</p>
+								</td>
+							</tr>
+						</table>
+					</a>
+				</div>
 			<!--bit end-->
 			`);
 		});
@@ -321,7 +321,11 @@ function hidePopup() {
 	wrapper.style.display = "block";
 	popup.style.display = "none";
 }
-
+function shareVideo() {
+	let videoid = getParameterByName('id');
+	let data = {title: 'YT Link', url: 'https://www.youtube.com/watch?v='+videoid};
+	navigator.share(data);
+}
 //stolen scripts
 
 //urlparser
@@ -337,17 +341,14 @@ function getParameterByName(name, url = window.location.href) {
 //tab manager
 function openTab(evt, tabName) {
 	var i, tabcontent, tablinks;
-
 	tabcontent = document.getElementsByClassName("tabcontent");
 	for (i = 0; i < tabcontent.length; i++) {
 		tabcontent[i].style.display = "none";
 	}
-
 	tablinks = document.getElementsByClassName("tablinks");
 	for (i = 0; i < tablinks.length; i++) {
 		tablinks[i].className = tablinks[i].className.replace(" active", "");
 	}
-
 	document.getElementById(tabName).style.display = "block";
 	evt.currentTarget.className += " active";
 }
@@ -372,22 +373,15 @@ window.acc=(e)=>{
 
 //duration
 function isoDurationToHHMMSS(duration) {
-	// Parse the ISO 8601 duration
 	const regex = /P(?:T(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?)?/;
 	const matches = duration.match(regex);
-
 	if (!matches) {
 		throw new Error("Invalid ISO 8601 duration format");
 	}
-
-	// Extract hours, minutes, and seconds
 	let hours = parseInt(matches[1] || 0, 10);
 	let minutes = parseInt(matches[2] || 0, 10);
 	let seconds = parseInt(matches[3] || 0, 10);
-
-	// Format each component to be two digits
 	const pad = (num) => String(num).padStart(2, '0');
-
 	return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
 }
 //relative time from timestamp
@@ -395,7 +389,6 @@ function timeSince(date) {
 	const now = new Date();
 	const past = new Date(date);
 	const seconds = Math.floor((now - past) / 1000);
-
 	const intervals = [
 		{ label: 'year', seconds: 31536000 },
 		{ label: 'month', seconds: 2592000 },
@@ -404,21 +397,15 @@ function timeSince(date) {
 		{ label: 'minute', seconds: 60 },
 		{ label: 'second', seconds: 1 }
 	];
-
 	for (const interval of intervals) {
 		const count = Math.floor(seconds / interval.seconds);
 		if (count > 0) {
 			return `${count} ${interval.label}${count !== 1 ? 's' : ''} ago`;
 		}
 	}
-
 	return 'just now';
 }
-function shareVideo() {
-	let videoid = getParameterByName('id');
-	let data = {title: 'YT Link', url: 'https://www.youtube.com/watch?v='+videoid};
-	navigator.share(data);
-}
+
 function copyUrl(){
 	var dummy = document.createElement('input'),
     text = window.location.href;
