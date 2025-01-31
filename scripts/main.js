@@ -89,7 +89,6 @@ function search() {
 	var encquery = encodeURIComponent(query);
 	var containerQuery = document.getElementById('containerQuery');
 	containerQuery.innerHTML = query;
-	//кино на время говнокодинга https://ok.ru/video/1367341533919?fromTime=3408
 	var url = 'https://www.googleapis.com/youtube/v3/search?part=id,snippet&maxResults=25&type=video&q='+encquery+'&order='+sort+'&key='+apikey;
 	if (!!pageToken) {
 		url+='&pageToken='+pageToken;
