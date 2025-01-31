@@ -371,7 +371,10 @@ function displayBookmarks() {
         `);
     });
 }
-
+function dload() {
+	var videoid = getParameterByName('id');
+	window.open('https://www.y2mate.com/download-youtube/'+videoid, '_blank');
+}
 
 
 
