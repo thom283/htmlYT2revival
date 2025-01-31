@@ -75,6 +75,7 @@ function video() {
 		let chanTitle = response.items[0].snippet.channelTitle;
 		vidChannel.innerHTML = `<a class="button" href="channel.html?channelId=${chanId}">${chanTitle}</a>`;
 		vidDescription.innerHTML = response.items[0].snippet.description.replace('\n', '<br />');
+		document.getElementById('bmarkcon').innerHTML = `<button class="favBtn btnToolbar" onclick="toggleBookmark('${videoid}', '${response.items[0].snippet.title}', '${response.items[0].snippet.thumbnails.default.url}')"></button>`;
 		comments(videoid);
 	}
 }
@@ -327,10 +328,54 @@ function shareVideo() {
 	let data = {title: 'YT Link', url: 'https://www.youtube.com/watch?v='+videoid};
 	navigator.share(data);
 }
-function toggleBookmark(vid) {
-	alert(vid);
-	
+function toggleBookmark(videoId, title, img) {
+    let bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
+    const bookmark = { videoId, title, img };
+    const index = bookmarks.findIndex(b => b.videoId === videoId);
+    if (index !== -1) {
+        bookmarks.splice(index, 1);
+        console.log(`Removed bookmark: ${videoId}`);
+    } else {
+        if (bookmarks.length >= 50) {
+            console.log('Bookmark limit exceeded. Cannot add more bookmarks.');
+            return;
+        }
+        bookmarks.push(bookmark);
+        console.log(`Added bookmark: ${videoId}`);
+    }
+    localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
 }
+function displayBookmarks() {
+    const bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
+    const bookmarkList = document.getElementById('bookmarkList');
+    if (bookmarks.length === 0) {
+        bookmarkList.innerHTML = '<p>No bookmarks found.</p>';
+        return;
+    }
+    bookmarks.forEach(bookmark => {
+        const { videoId, title, img } = bookmark;
+        bookmarkList.insertAdjacentHTML('beforeend', `
+			<!--bit start-->
+				<div class="videobit">
+					<a href="video.html?id=${videoId}">
+						<table>
+							<tr>
+								<td class="videobitPic"><img src="${img}" height="90" width="140"/></td>
+								<td class="videobitDesc">
+									<h4>${title}</h4>
+								</td>
+							</tr>
+						</table>
+					</a>
+				</div>
+			<!--bit end-->
+        `);
+    });
+}
+
+// Example usage: Call this function on page load or when needed
+document.addEventListener('DOMContentLoaded', displayBookmarks);
+
 
 //stolen scripts
 
