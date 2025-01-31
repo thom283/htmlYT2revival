@@ -1,6 +1,7 @@
 //settings
 let glype = localStorage.getItem('glype');
 let apikey = localStorage.getItem('key');
+let bookmarks = localStorage.getItem('bookmarks');
 if (!glype) {
 	localStorage.setItem('glype', 'https://api.codetabs.com/v1/proxy/?quest=');
 	glype = localStorage.getItem('glype');
@@ -77,13 +78,12 @@ function video() {
 		comments(videoid);
 	}
 }
-
-
-
 function search() {
 	let videolist = document.getElementById('videobits');
 	page+=1;
 	let query = getParameterByName('searchField');
+	let sfld = document.getElementById('sfld');
+	sfld.value = query;
 	let sort = getParameterByName('sort');
 	let encquery = encodeURIComponent(query);
 	let containerQuery = document.getElementById('containerQuery');
@@ -323,9 +323,15 @@ function hidePopup() {
 }
 function shareVideo() {
 	let videoid = getParameterByName('id');
+	
 	let data = {title: 'YT Link', url: 'https://www.youtube.com/watch?v='+videoid};
 	navigator.share(data);
 }
+function toggleBookmark(vid) {
+	alert(vid);
+	
+}
+
 //stolen scripts
 
 //urlparser

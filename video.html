@@ -14,6 +14,18 @@
 
   </head>
   <body onload="video()">
+    <script>
+      //urlparser
+      function getParameterByName(name, url = window.location.href) {
+        name = name.replace(/[\[\]]/g, '\\$&');
+        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+      }
+      let vidid = getParameterByName('id');
+    </script>
   <div id="wrapper">
     <div style="height:48px; margin-bottom: 32px">
 
@@ -21,7 +33,7 @@
         <tr>
           <td class="logo" style="width: auto"><a href="settings.html" style="display:block; height:100%; width: 100%"></a></td>
           <td style="width: 32px">
-            <button class="favBtn btnToolbar"></button>
+            <script>document.write(`<button class="favBtn btnToolbar" onclick="toggleBookmark('${vidid}')"></button>`);</script>
           </td>
           <td class="divider"></td>
           <td style="width: 32px">
@@ -40,17 +52,7 @@
     </div>
     <div></div>
     <div class="player">
-      <script>
-        //urlparser
-        function getParameterByName(name, url = window.location.href) {
-          name = name.replace(/[\[\]]/g, '\\$&');
-          var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-          results = regex.exec(url);
-          if (!results) return null;
-          if (!results[2]) return '';
-          return decodeURIComponent(results[2].replace(/\+/g, ' '));
-        }
-        let vidid = getParameterByName('id');
+        <script>
         document.write(`<video
           id="vid1"
           class="video-js vjs-default-skin"
