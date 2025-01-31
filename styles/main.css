@@ -66,7 +66,7 @@ input[type=search] {
 	height: 32px;
 	width: 100%;
 }
-input[type=search]:focus-visible {
+input[type=search]:focus {
 	outline: none;
 	border: solid 2px #0095ff;
 	border-top: none;
@@ -137,7 +137,7 @@ input[type=search]:focus-visible {
 	height: 48px;
 	appearance: none;
 	background: rgb(0, 0, 0);
-	color: unset;
+	color: white;
 	width:100%;
 	min-width: 100px;
 	padding: 0px;
@@ -153,7 +153,7 @@ input[type=search]:focus-visible {
 	border-top-left-radius: 6px;
 	border-top-right-radius: 6px;
 	background: linear-gradient(0deg, #000000, #474747, #626262);
-	border: solid 1px rgb(190 190 190);
+	border: solid 1px rgb(190, 190, 190);
 	border-bottom: none;
 }
 .tabcontent {
